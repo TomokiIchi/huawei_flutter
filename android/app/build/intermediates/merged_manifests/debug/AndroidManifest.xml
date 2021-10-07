@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?><manifest xmlns:android="http://schemas.android.com/apk/res/android" package="assista.app.flutter" android:versionCode="1" android:versionName="1.0.0">
+  <uses-sdk android:minSdkVersion="21" android:targetSdkVersion="30"/>
+  <uses-permission android:name="android.permission.INTERNET"/>
+  <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+  <uses-permission android:name="com.huawei.appmarket.service.commondata.permission.GET_COMMON_DATA"/>
+  <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+  <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES"/>
+  <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+  <application android:appComponentFactory="androidx.core.app.CoreComponentFactory" android:debuggable="true" android:icon="@mipmap/ic_launcher" android:label="assista_app">
+    <activity android:name="assista.app.flutter.MainActivity" android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode" android:hardwareAccelerated="true" android:launchMode="singleTop" android:theme="@style/LaunchTheme" android:windowSoftInputMode="adjustResize">
+      <meta-data android:name="io.flutter.embedding.android.NormalTheme" android:resource="@style/NormalTheme"/>
+      <meta-data android:name="io.flutter.embedding.android.SplashScreenDrawable" android:resource="@drawable/launch_background"/>
+      <intent-filter>
+        <action android:name="android.intent.action.MAIN"/>
+        <category android:name="android.intent.category.LAUNCHER"/>
+      </intent-filter>
+    </activity>
+    <meta-data android:name="flutterEmbedding" android:value="2"/>
+    <service android:name="com.huawei.hms.flutter.health.modules.autorecorder.service.AutoRecorderBackgroundService">
+      <intent-filter android:priority="1000">
+        <action android:name="HealthKitService"/>
+      </intent-filter>
+    </service>
+    <service android:name="com.huawei.agconnect.core.ServiceDiscovery" android:exported="false">
+      <meta-data android:name="com.huawei.agconnect.crash.AGConnectCrashRegistrar" android:value="com.huawei.agconnect.core.ServiceRegistrar"/>
+      <meta-data android:name="com.huawei.agconnect.credential.CredentialServiceRegistrar:500" android:value="com.huawei.agconnect.core.ServiceRegistrar"/>
+    </service>
+    <meta-data android:name="com.huawei.hms.client.service.name:hianalytics" android:value="hianalytics:5.0.5.300"/>
+    <meta-data android:name="com.huawei.hms.min_api_level:hianalytics:hianalytics" android:value="1"/>
+    <receiver android:name="com.huawei.hms.analytics.receiver.HiAnalyticsSvcEvtReceiver" android:exported="false">
+      <intent-filter>
+        <action android:name="com.huawei.hms.analytics.pps.event"/>
+      </intent-filter>
+    </receiver>
+    <uses-library android:name="org.apache.http.legacy" android:required="false"/>
+    <provider android:name="com.huawei.hms.aaid.InitProvider" android:authorities="assista.app.flutter.aaidinitprovider" android:exported="false"/>
+    <meta-data android:name="com.huawei.hms.client.service.name:opendevice" android:value="opendevice:5.0.0.301"/>
+    <meta-data android:name="com.huawei.hms.min_api_level:opendevice:push" android:value="1"/>
+    <meta-data android:name="com.huawei.hms.client.service.name:hihealth-base" android:value="hihealth-base:5.0.5.300"/>
+    <meta-data android:name="com.huawei.hms.min_api_level:hihealth-base:hihealth" android:value="4"/>
+    <activity android:name="com.huawei.hms.hwid.internal.ui.activity.HwIdSignInHubActivity" android:excludeFromRecents="true" android:exported="false" android:theme="@android:style/Theme.Translucent.NoTitleBar"/>
+    <activity android:name="com.huawei.hms.account.internal.ui.activity.AccountSignInHubActivity" android:excludeFromRecents="true" android:exported="false" android:theme="@android:style/Theme.Translucent.NoTitleBar"/>
+    <meta-data android:name="com.huawei.hms.client.service.name:hwid" android:value="hwid:5.0.0.300"/>
+    <meta-data android:name="com.huawei.hms.min_api_level:hwid:hwid" android:value="1"/>
+    <meta-data android:name="com.huawei.hms.client.service.name:base" android:value="base:5.0.4.301"/>
+    <meta-data android:name="com.huawei.hms.min_api_level:base:hmscore" android:value="1"/>
+    <meta-data android:name="availableLoaded" android:value="yes"/>
+    <provider android:name="com.huawei.hms.update.provider.UpdateProvider" android:authorities="assista.app.flutter.hms.update.provider" android:exported="false" android:grantUriPermissions="true"/>
+    <provider android:name="com.huawei.agconnect.core.provider.AGConnectInitializeProvider" android:authorities="assista.app.flutter.AGCInitializeProvider" android:exported="false"/>
+    <activity android:name="com.huawei.hms.activity.BridgeActivity" android:configChanges="orientation|locale|layoutDirection|fontScale|screenSize|smallestScreenSize|screenLayout|uiMode" android:excludeFromRecents="true" android:exported="false" android:hardwareAccelerated="true" android:screenOrientation="behind" android:theme="@android:style/Theme.Translucent">
+      <meta-data android:name="hwc-theme" android:value="androidhwext:style/Theme.Emui.Translucent"/>
+    </activity>
+    <activity android:name="com.huawei.hms.activity.EnableServiceActivity" android:configChanges="orientation|keyboardHidden|screenSize|smallestScreenSize|screenLayout" android:exported="false"/>
+    <activity android:name="com.huawei.updatesdk.service.otaupdate.AppUpdateActivity" android:configChanges="orientation|screenSize" android:exported="false" android:theme="@android:style/Theme.Translucent.NoTitleBar">
+      <meta-data android:name="hwc-theme" android:value="androidhwext:style/Theme.Emui.Translucent.NoTitleBar"/>
+    </activity>
+    <activity android:name="com.huawei.updatesdk.support.pm.PackageInstallerActivity" android:configChanges="orientation|keyboardHidden|screenSize" android:exported="false" android:theme="@android:style/Theme.Translucent.NoTitleBar">
+      <meta-data android:name="hwc-theme" android:value="androidhwext:style/Theme.Emui.Translucent"/>
+    </activity>
+    <provider android:name="com.huawei.updatesdk.fileprovider.UpdateSdkFileProvider" android:authorities="assista.app.flutter.updateSdk.fileProvider" android:exported="false" android:grantUriPermissions="true"/>
+    <meta-data android:name="com.huawei.hms.client.appid" android:value="appid=104805921"/>
+  </application>
+</manifest>
