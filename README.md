@@ -1,4 +1,4 @@
-# huawei_flutter
+# assista_app
 
 A new Flutter project.
 
